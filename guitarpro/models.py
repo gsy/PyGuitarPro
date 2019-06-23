@@ -1157,7 +1157,6 @@ class Note(object):
 
     """Describes a single note."""
 
-    beat = attr.ib(hash=False, cmp=False, repr=False)
     value = attr.ib(default=0)
     velocity = attr.ib(default=Velocities.default)
     string = attr.ib(default=0)
@@ -1165,10 +1164,7 @@ class Note(object):
     durationPercent = attr.ib(default=1.0)
     swapAccidentals = attr.ib(default=False)
     type = attr.ib(default=NoteType.rest)
-
-    @property
-    def realValue(self):
-        return self.value + self.beat.voice.measure.track.strings[self.string - 1].value
+    realValue = attr.ib(default=0)
 
 
 @hashableAttrs

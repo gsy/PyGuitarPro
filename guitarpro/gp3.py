@@ -949,6 +949,7 @@ class GP3File(GPFileBase):
             note.effect = self.readNoteEffects(note)
             if note.effect.isHarmonic and isinstance(note.effect.harmonic, gp.TappedHarmonic):
                 note.effect.harmonic.fret = note.value + 12
+        note.realValue = note.value + track.strings[guitarString.number - 1].value
         return note
 
     def unpackVelocity(self, dyn):

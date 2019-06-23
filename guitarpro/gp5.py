@@ -788,6 +788,8 @@ class GP5File(gp4.GP4File):
         note.swapAccidentals = bool(flags2 & 0x02)
         if flags & 0x08:
             note.effect = self.readNoteEffects(note)
+
+        note.realValue = note.value + track.strings[guitarString.number - 1].value
         return note
 
     def readGrace(self):
